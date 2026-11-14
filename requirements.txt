@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+apscheduler
+google-generativeai
+pydantic
+yt-dlp
+openai-whisper
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch

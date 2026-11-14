@@ -99,3 +99,4 @@ python3 scripts/check_translations.py
 ## 📄 License
 
 MIT — do what you want, just keep the credits.
+"# ClipPulse-AI" 
