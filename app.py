@@ -136,7 +136,7 @@ def process_video_pipeline(
             sys.executable, "-m", "yt_dlp",
             "--ffmpeg-location", FFMPEG_EXE,
             "-f", "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]",
-            "--merge-output-format", "mp4",
+            "--extractor-args", "youtube:player_client=ios,tv,web", "--merge-output-format", "mp4",
             "-o", raw_video,
             youtube_url
         ]
@@ -250,7 +250,7 @@ def process_video_pipeline(
 
         log_job(job_id, "Completed", f"Rendered {len(highlights)} short(s) in {layout_mode.upper()} mode ({source})")
     except Exception as e:
-        log_job(job_id, "Failed", str(e)[:120])
+        print(f"[PIPELINE ERROR] {e}"); log_job(job_id, "Failed", str(e)[:120]); raise e
 
 # --- AUTONOMOUS AGENT BACKGROUND LOOP ---
 def autonomous_agent_tick():
@@ -502,3 +502,4 @@ if __name__ == "__main__":
     import uvicorn
     port = int(os.environ.get("PORT", 7860 if os.name != "nt" else 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
+
