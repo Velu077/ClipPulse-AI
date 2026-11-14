@@ -29,7 +29,7 @@ jobs:
           TARGET_URL: ${{ github.event.inputs.youtube_url }}
           LAYOUT_MODE: ${{ github.event.inputs.layout_mode }}
         run: |
-          python -c "import os, app; app.process_video_pipeline(os.environ['TARGET_URL'], 'cloud', 'GitHub Actions', os.environ.get('LAYOUT_MODE', 'blur'), True)"
+          python -c 'import os, app; url = os.environ.get("TARGET_URL"); app.process_video_pipeline(url, "cloud", "GitHub Actions", os.environ.get("LAYOUT_MODE", "blur"), True) if url else app.autonomous_agent_tick()'
       - name: Upload Finished MP4 Short
         uses: actions/upload-artifact@v4
         with:
